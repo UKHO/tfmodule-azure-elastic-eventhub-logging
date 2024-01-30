@@ -22,3 +22,13 @@ variable "resource_group_name" {
   type = string
   description = "Resource Group name"
 }
+
+variable "key_vault_id" {
+  type = string
+  description = "Key Vault ID"
+}
+
+variable "configuration_store_id" {
+  
+}
+
