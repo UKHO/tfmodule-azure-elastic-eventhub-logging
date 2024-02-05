@@ -35,3 +35,5 @@ variable "configuration_store_id" {
 variable agent_policy_id {}
 
 variable "Elastic_API_Key" {}
+
+variable "ELK_URL" {}
