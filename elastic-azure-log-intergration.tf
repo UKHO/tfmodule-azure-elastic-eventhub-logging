@@ -18,6 +18,18 @@
 #}
 
 resource "null_resource" "create_agent_policy" {
+    triggers = {
+      # Use the MD5 hash of the data as a trigger
+      data_checksum = md5(jsonencode({
+        name               = "Agent policy CY",
+        description        = "",
+        namespace          = "default",
+        monitoring_enabled = ["logs", "metrics"],
+        inactivity_timeout = 1209600,
+        is_protected       = false,
+      }))
+    }
+
   provisioner "local-exec" {
     command = <<-EOT
       curl -X POST -H "Content-Type: application/json" -H "Authorization: ApiKey ${var.Elastic_API_Key}" -d '{
