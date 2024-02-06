@@ -35,7 +35,7 @@ resource "null_resource" "invoke_web_request" {
         "monitoring_enabled" = ["logs", "metrics"]
       } | ConvertTo-Json
 
-      Invoke-WebRequest -Uri "https://`${var.ELK_URL}`/api/fleet/agent_policies?sys_monitoring=true" `
+      Invoke-WebRequest -Uri "https://${var.ELK_URL}/api/fleet/agent_policies?sys_monitoring=true" `
         -Headers $headers -Method POST -Body $body
     EOT
 
