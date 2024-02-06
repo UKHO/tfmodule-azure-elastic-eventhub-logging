@@ -36,7 +36,7 @@ resource "null_resource" "invoke_web_request" {
        "metrics"
      ]
    }'
-    EOT
+EOT
 
     #interpreter = ["pwsh", "-Command"]
   }
