@@ -45,6 +45,7 @@ resource "null_resource" "create_package_policy" {
   provisioner "local-exec" {
     command = <<-EOT
       curl -X POST "https://${var.ELK_URL}/api/fleet/package_policies" \
+-H "Authorization: ApiKey ${var.Elastic_API_Key}" \
 -H "Content-Type: application/json" \
 -d '{
   "policy_id": "8950acc0-c508-11ee-8363-d9aaa660e3db",
