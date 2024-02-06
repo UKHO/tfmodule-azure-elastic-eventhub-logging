@@ -17,7 +17,7 @@
 #  }
 #}
 
-resource "null_resource" "invoke_web_request" {
+resource "null_resource" "create_agent_policy" {
   # Your other resource configuration here...
 
   provisioner "local-exec" {
@@ -27,7 +27,7 @@ resource "null_resource" "invoke_web_request" {
         -H "Content-Type: application/json" \
         -H "kbn-xsrf: reporting" \
         -d '{
-          "name": "Agent policy TEST3",
+          "name": "Agent policy TEST4",
           "description": "",
           "namespace": "default",
           "monitoring_enabled": [
