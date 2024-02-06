@@ -23,9 +23,9 @@ resource "null_resource" "invoke_web_request" {
   provisioner "local-exec" {
     command = <<-EOT
       $headers = @{
-        "Authorization" : "ApiKey ${var.Elastic_API_Key}"
-        "Content-Type"  : "application/json"
-        "kbn-xsrf"      : "reporting"
+        "Authorization" = "ApiKey ${var.Elastic_API_Key}"
+        "Content-Type"  = "application/json"
+        "kbn-xsrf"      = "reporting"
       }
 
       $body = @{
@@ -39,7 +39,7 @@ resource "null_resource" "invoke_web_request" {
         -Headers $headers -Method POST -Body $body
     EOT
 
-    interpreter = ["pwsh", "-Command"]
+    #interpreter = ["pwsh", "-Command"]
   }
 }
 
