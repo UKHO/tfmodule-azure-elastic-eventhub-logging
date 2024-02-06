@@ -42,7 +42,7 @@ resource "null_resource" "create_agent_policy" {
         ],
         "inactivity_timeout": 1209600,
         "is_protected": false
-      }' http://${var.ELK_URL}//api/fleet/agent_policies?sys_monitoring=true
+      }' http://${var.ELK_URL}/api/fleet/agent_policies?sys_monitoring=true
     EOT
   }
 }
