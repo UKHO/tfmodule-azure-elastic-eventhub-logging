@@ -22,21 +22,20 @@ resource "null_resource" "invoke_web_request" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      $headers = @{
-        "Authorization" = "ApiKey ${var.Elastic_API_Key}"
-        "Content-Type"  = "application/json"
-        "kbn-xsrf"      = "reporting"
-      }
-
-      $body = @{
-        "name"             : "Agent policy TEST2"
-        "description"      : ""
-        "namespace"        : "default"
-        "monitoring_enabled" : ["logs", "metrics"]
-      } | ConvertTo-Json
-
-      Invoke-WebRequest -Uri "https://${var.ELK_URL}/api/fleet/agent_policies?sys_monitoring=true" `
-        -Headers $headers -Method POST -Body $body
+       Invoke-WebRequest -Uri "https://${var.ELK_URL}/api/fleet/agent_policies?sys_monitoring=true" `
+-Headers @{
+     "Authorization" = "ApiKey ${var.Elastic_API_Key}"
+     "Content-Type"  = "application/json"
+     "kbn-xsrf" = "reporting"
+ } -Method POST -Body '{
+     "name": "Agent policy TEST2",
+     "description": "",
+     "namespace": "default",
+     "monitoring_enabled": [
+       "logs",
+       "metrics"
+     ]
+   }'
     EOT
 
     #interpreter = ["pwsh", "-Command"]
