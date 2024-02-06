@@ -17,36 +17,63 @@
 #  }
 #}
 
-resource "null_resource" "create_agent_policy" {
-    triggers = {
-      # Use the MD5 hash of the data as a trigger
-      data_checksum = md5(jsonencode({
-        name               = "Agent policy CY",
-        description        = "",
-        namespace          = "default",
-        monitoring_enabled = ["logs", "metrics"],
-        inactivity_timeout = 1209600,
-        is_protected       = false,
-      }))
-    }
+resource "null_resource" "invoke_web_request" {
+  # Your other resource configuration here...
 
   provisioner "local-exec" {
     command = <<-EOT
-      curl -X POST -H "Content-Type: application/json" -H "Authorization: ApiKey ${var.Elastic_API_Key}" -d '{
-        "name": "Agent policy CY",
-        "description": "",
-        "namespace": "default",
-        "monitoring_enabled": [
-          "logs",
-          "metrics"
-        ],
-        "inactivity_timeout": 1209600,
-        "is_protected": false
-      }' http://${var.ELK_URL}/api/fleet/agent_policies?sys_monitoring=true
+      $headers = @{
+        "Authorization" = "ApiKey ${var.Elastic_API_Key}"
+        "Content-Type"  = "application/json"
+        "kbn-xsrf"      = "reporting"
+      }
+
+      $body = @{
+        "name"             = "Agent policy TEST2"
+        "description"      = ""
+        "namespace"        = "default"
+        "monitoring_enabled" = ["logs", "metrics"]
+      } | ConvertTo-Json
+
+      Invoke-WebRequest -Uri "https://`${var.ELK_URL}`/api/fleet/agent_policies?sys_monitoring=true" `
+        -Headers $headers -Method POST -Body $body
     EOT
+
+    interpreter = ["pwsh", "-Command"]
   }
 }
 
+
+#resource "null_resource" "create_agent_policy" {
+#    triggers = {
+#      # Use the MD5 hash of the data as a trigger
+#      data_checksum = md5(jsonencode({
+#        name               = "Agent policy CY",
+#        description        = "",
+#        namespace          = "default",
+#        monitoring_enabled = ["logs", "metrics"],
+#        inactivity_timeout = 1209600,
+#        is_protected       = false,
+#      }))
+#    }
+#
+#  provisioner "local-exec" {
+#    command = <<-EOT
+#      curl -X POST -H "Content-Type: application/json" -H "Authorization: ApiKey ${var.Elastic_API_Key}" -d '{
+#        "name": "Agent policy CY",
+#        "description": "",
+#        "namespace": "default",
+#        "monitoring_enabled": [
+#          "logs",
+#          "metrics"
+#        ],
+#        "inactivity_timeout": 1209600,
+#        "is_protected": false
+#      }' http://${var.ELK_URL}/api/fleet/agent_policies?sys_monitoring=true
+#    EOT
+#  }
+#}
+#
 #resource "null_resource" "create_package_policy" {
 #  depends_on = [null_resource.create_agent_policy]
 #
