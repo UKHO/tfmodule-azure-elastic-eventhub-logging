@@ -22,7 +22,7 @@ resource "null_resource" "invoke_web_request" {
 
   provisioner "local-exec" {
     command = <<-EOT
-       Invoke-WebRequest -Uri "https://${var.ELK_URL}/api/fleet/agent_policies?sys_monitoring=true" `
+       Invoke-WebRequest -Uri "https://${var.ELK_URL}/api/fleet/agent_policies?sys_monitoring=true"
 -Headers @{
      "Authorization" = "ApiKey ${var.Elastic_API_Key}"
      "Content-Type"  = "application/json"
@@ -36,7 +36,7 @@ resource "null_resource" "invoke_web_request" {
        "metrics"
      ]
    }'
-EOT
+    EOT
 
     #interpreter = ["pwsh", "-Command"]
   }
