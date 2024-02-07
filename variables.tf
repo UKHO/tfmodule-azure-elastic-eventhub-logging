@@ -38,6 +38,6 @@ variable "ELK_URL" {}
 
 variable "ELK_storage_account" {}
 
-variable "elkagentstorage-account-key" {}
+variable "ELK_storage_account_key" {}
 
 #variable "ELK_connection_string" {}

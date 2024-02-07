@@ -183,7 +183,7 @@ resource "null_resource" "create_package_policy" {
     "consumer_group": "$Default",
     "connection_string": "${local.EVH_ConnectionString}",
     "storage_account": "${var.ELK_storage_account}",
-    "storage_account_key": "${var.elkagentstorage-account-key}"
+    "storage_account_key": "${var.ELK_storage_account_key}"
   }
 }'
     EOT
