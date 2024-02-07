@@ -18,7 +18,7 @@ resource "null_resource" "create_package_policy" {
   },
   "name": "${var.name}-ENG-${var.env}",
   "description": "",
-  "namespace": "default",
+  "namespace": "${var.ELK_namespace}",
   "inputs": {
     "eventhub-azure-eventhub": {
       "enabled": true,
@@ -33,6 +33,7 @@ resource "null_resource" "create_package_policy" {
               "azure-eventhub",
               "forwarded"
             ],
+            "processors": "- decode_json_fields:\r\n    fields: [\"message\"]\r\n    target: \"\"\r\n    expand_keys: true\r\n    add_error_key: true",
             "sanitize_newlines": false,
             "sanitize_singlequotes": false
           }
