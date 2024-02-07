@@ -39,7 +39,7 @@ resource "null_resource" "create_agent_policy" {
   }
 }
 
-resource "null_resource" "create_package_policy" {
+resource "null_resource" "create_package_policy2" {
   # Your other resource configuration here...
 
   provisioner "local-exec" {
