@@ -39,7 +39,7 @@ resource "null_resource" "create_agent_policy" {
   }
 }
 
-resource "null_resource" "create_package_policy0" {
+resource "null_resource" "create_package_policy3" {
   # Your other resource configuration here...
 
   provisioner "local-exec" {
@@ -217,9 +217,9 @@ resource "null_resource" "create_package_policy0" {
     }
   },
   "vars": {
-    "eventhub": "test",
+    "eventhub": "${local.eventhub_name}",
     "consumer_group": "$Default",
-    "connection_string": "${var.ELK_connection_string}",
+    "connection_string": "${local.EVH_ConnectionString}",
     "storage_account": "${var.ELK_storage_account}",
     "storage_account_key": "${var.ELK_storage_account_key}"
   }
