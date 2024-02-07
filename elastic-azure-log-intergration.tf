@@ -18,7 +18,7 @@ resource "null_resource" "create_package_policy" {
   },
   "name": "${var.name}-ENG-${var.env}",
   "description": "",
-  "namespace": "${var.ELK_namespace}",
+  "namespace": "default",
   "inputs": {
     "eventhub-azure-eventhub": {
       "enabled": true,
