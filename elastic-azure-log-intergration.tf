@@ -39,7 +39,7 @@ resource "null_resource" "create_agent_policy" {
   }
 }
 
-resource "null_resource" "create_package_policy1" {
+resource "null_resource" "create_package_policy0" {
   # Your other resource configuration here...
 
   provisioner "local-exec" {
@@ -54,8 +54,8 @@ resource "null_resource" "create_package_policy1" {
     "name": "azure",
     "version": "1.7.0"
   },
-  "name": "azure-1",
-  "description": "test",
+  "name": "${var.name}-ENG-${var.env}",
+  "description": "",
   "namespace": "default",
   "inputs": {
     "eventhub-azure-eventhub": {
@@ -219,9 +219,9 @@ resource "null_resource" "create_package_policy1" {
   "vars": {
     "eventhub": "test",
     "consumer_group": "$Default",
-    "connection_string": "test",
-    "storage_account": "test",
-    "storage_account_key": "test"
+    "connection_string": "${var.ELK_connection_string}",
+    "storage_account": "${var.ELK_storage_account}",
+    "storage_account_key": "${var.ELK_storage_account_key}"
   }
 }'
     EOT

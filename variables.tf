@@ -28,12 +28,16 @@ variable "key_vault_id" {
   description = "Key Vault ID"
 }
 
-variable "configuration_store_id" {
-  
-}
+variable "configuration_store_id" {}
 
 variable agent_policy_id {}
 
 variable "Elastic_API_Key" {}
 
 variable "ELK_URL" {}
+
+variable "ELK_storage_account" {}
+
+variable "ELK_storage_account_key" {}
+
+variable "ELK_connection_string" {}
