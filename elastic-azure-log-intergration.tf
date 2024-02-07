@@ -49,7 +49,7 @@ resource "null_resource" "create_package_policy4" {
 -H "Content-Type: application/json" \
 -H "kbn-xsrf: reporting" \
 -d '{
-  "policy_id": "8950acc0-c508-11ee-8363-d9aaa660e3db",
+  "policy_id": "${var.agent_policy_id}",
   "package": {
     "name": "azure",
     "version": "1.7.0"
