@@ -40,4 +40,4 @@ variable "ELK_storage_account" {}
 
 variable "ELK_storage_account_key" {}
 
-#variable "ELK_connection_string" {}
+variable "ELK_namespace" {}
