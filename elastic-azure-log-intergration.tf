@@ -39,7 +39,7 @@ resource "null_resource" "create_agent_policy" {
   }
 }
 
-resource "null_resource" "create_package_policy2" {
+resource "null_resource" "create_package_policy1" {
   # Your other resource configuration here...
 
   provisioner "local-exec" {
@@ -47,6 +47,7 @@ resource "null_resource" "create_package_policy2" {
       curl -X POST "https://${var.ELK_URL}/api/fleet/package_policies" \
 -H "Authorization: ApiKey ${var.Elastic_API_Key}" \
 -H "Content-Type: application/json" \
+-H "kbn-xsrf: reporting" \
 -d '{
   "policy_id": "8950acc0-c508-11ee-8363-d9aaa660e3db",
   "package": {
