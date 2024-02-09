@@ -8,6 +8,11 @@ variable "product_alias" {
   description = "The alias for the project"
 }
 
+variable "service" {
+  type = string
+  description = "The service name to be logged"
+}
+
 variable "env" {
   type = string
   default = "Environment name or resource"
@@ -27,6 +32,8 @@ variable "key_vault_id" {
   type = string
   description = "Key Vault ID"
 }
+
+variable "event_hub_namespace" {}
 
 variable "configuration_store_id" {}
 

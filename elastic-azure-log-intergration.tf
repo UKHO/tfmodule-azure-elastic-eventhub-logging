@@ -3,6 +3,8 @@ resource "null_resource" "create_package_policy" {
   triggers = {
     always_run = timestamp()
   }
+  depends_on = [ azurerm_eventhub.logging ]
+   
 
   provisioner "local-exec" {
     command = <<-EOT
@@ -182,7 +184,7 @@ resource "null_resource" "create_package_policy" {
   "vars": {
     "eventhub": "${local.eventhub_name}",
     "consumer_group": "$Default",
-    "connection_string": "${local.EVH_ConnectionString}",
+    "connection_string": "${var.event_hub_namespace}",
     "storage_account": "${var.ELK_storage_account}",
     "storage_account_key": "${var.ELK_storage_account_key}"
   }
