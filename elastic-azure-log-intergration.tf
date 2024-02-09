@@ -184,7 +184,7 @@ resource "null_resource" "create_package_policy" {
   "vars": {
     "eventhub": "${var.product_alias}-${var.service}-${var.env}-evh-logging",
     "consumer_group": "$Default",
-    "connection_string": "${var.event_hub_namespace}",
+    "connection_string": "${var.event_hub_namespace_connection_string}",
     "storage_account": "${var.ELK_storage_account}",
     "storage_account_key": "${var.ELK_storage_account_key}"
   }
