@@ -182,7 +182,7 @@ resource "null_resource" "create_package_policy" {
     }
   },
   "vars": {
-    "eventhub": "${local.eventhub_name}",
+    "eventhub": "${var.product_alias}-${var.service}-${var.env}-evh-logging",
     "consumer_group": "$Default",
     "connection_string": "${var.event_hub_namespace}",
     "storage_account": "${var.ELK_storage_account}",
