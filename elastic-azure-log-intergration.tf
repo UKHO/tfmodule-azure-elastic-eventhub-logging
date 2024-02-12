@@ -8,8 +8,8 @@ resource "null_resource" "create_package_policy" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      curl -X POST "https://${var.ELK_URL}/api/fleet/package_policies" \
--H "Authorization: ApiKey ${var.Elastic_API_Key}" \
+      curl -X POST "https://${var.elk_url}/api/fleet/package_policies" \
+-H "Authorization: ApiKey ${var.elk_api_key}" \
 -H "Content-Type: application/json" \
 -H "kbn-xsrf: reporting" \
 -d '{
@@ -20,7 +20,7 @@ resource "null_resource" "create_package_policy" {
   },
   "name": "${var.name}-${var.service}-ENG-${var.env}",
   "description": "",
-  "namespace": "${var.ELK_namespace}",
+  "namespace": "${var.elk_namespace}",
   "inputs": {
     "eventhub-azure-eventhub": {
       "enabled": true,
@@ -185,35 +185,10 @@ resource "null_resource" "create_package_policy" {
     "eventhub": "${local.eventhub_name}",
     "consumer_group": "$Default",
     "connection_string": "${var.event_hub_namespace_connection_string}",
-    "storage_account": "${var.ELK_storage_account}",
-    "storage_account_key": "${var.ELK_storage_account_key}"
+    "storage_account": "${var.elk_storage_account}",
+    "storage_account_key": "${var.elk_storage_account_key}"
   }
 }'
     EOT
   }
 }
-
-
-#resource "null_resource" "create_agent_policy" {
-#  triggers = {
-#    always_run = timestamp()
-#  }
-#
-#  provisioner "local-exec" {
-#    command = <<-EOT
-#      curl -k -X POST "https://${var.ELK_URL}/api/fleet/agent_policies?sys_monitoring=true" \
-#        -H "Authorization: ApiKey ${var.Elastic_API_Key}" \
-#        -H "Content-Type: application/json" \
-#        -H "kbn-xsrf: reporting" \
-#        -d '{
-#          "name": "Agent policy TEST4",
-#          "description": "",
-#          "namespace": "default",
-#          "monitoring_enabled": [
-#            "logs",
-#            "metrics"
-#          ]
-#        }'
-#    EOT
-#  }
-#}

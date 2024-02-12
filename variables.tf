@@ -41,12 +41,12 @@ variable "configuration_store_id" {}
 
 variable agent_policy_id {}
 
-variable "Elastic_API_Key" {}
+variable "elk_api_key" {}
 
-variable "ELK_URL" {}
+variable "elk_url" {}
 
-variable "ELK_storage_account" {}
+variable "elk_storage_account" {}
 
-variable "ELK_storage_account_key" {}
+variable "elk_storage_account_key" {}
 
-variable "ELK_namespace" {} # must be lower case
+variable "elk_namespace" {} # must be lower case
