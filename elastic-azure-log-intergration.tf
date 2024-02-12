@@ -3,8 +3,8 @@ resource "null_resource" "create_package_policy" {
   triggers = {
     always_run = timestamp()
   }
-  depends_on = [azurerm_eventhub.logging]
-
+  depends_on = [ azurerm_eventhub.logging ]
+   
 
   provisioner "local-exec" {
     command = <<-EOT
@@ -182,11 +182,11 @@ resource "null_resource" "create_package_policy" {
     }
   },
   "vars": {
-    "eventhub": "dh-evh-logging",
+    "eventhub": "${var.product_alias}-${var.service}-${var.env}-evh-logging",
     "consumer_group": "$Default",
-    "connection_string": "testing",
-    "storage_account": "testing",
-    "storage_account_key": "testing"
+    "connection_string": "${var.event_hub_namespace_connection_string}",
+    "storage_account": "${var.ELK_storage_account}",
+    "storage_account_key": "${var.ELK_storage_account_key}"
   }
 }'
     EOT
