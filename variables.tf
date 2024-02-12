@@ -49,4 +49,4 @@ variable "ELK_storage_account" {}
 
 variable "ELK_storage_account_key" {}
 
-variable "ELK_namespace" {}
+variable "ELK_namespace" {} # must be lower case
