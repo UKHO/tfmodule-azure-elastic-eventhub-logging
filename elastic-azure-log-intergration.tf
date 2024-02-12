@@ -18,7 +18,7 @@ resource "null_resource" "create_package_policy" {
     "name": "azure",
     "version": "1.7.0"
   },
-  "name": "${var.name}-ENG-${var.env}",
+  "name": "${var.name}-${var.service}-ENG-${var.env}",
   "description": "",
   "namespace": "${var.ELK_namespace}",
   "inputs": {
@@ -182,7 +182,7 @@ resource "null_resource" "create_package_policy" {
     }
   },
   "vars": {
-    "eventhub": "${var.product_alias}-${var.service}-${var.env}-evh-logging",
+    "eventhub": "${local.eventhub_name}",
     "consumer_group": "$Default",
     "connection_string": "${var.event_hub_namespace_connection_string}",
     "storage_account": "${var.ELK_storage_account}",
