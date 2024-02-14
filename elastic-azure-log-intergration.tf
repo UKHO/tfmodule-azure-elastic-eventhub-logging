@@ -1,7 +1,15 @@
 
 resource "null_resource" "create_package_policy" {
   triggers = {
-    always_run = timestamp()
+    var_eventhub_url = var.elk_url
+    var_api_key = var.elk_api_key
+    var_policy_id = var.agent_policy_id
+    var_name = var.name
+    var_service = var.service
+    var_env = var.env
+    var_event_hub_namespace_connection_string = var.event_hub_namespace_connection_string
+    var_elk_storage_account = var.elk_storage_account
+    var_elk_storage_account_key = var.elk_storage_account_key
   }
   depends_on = [ azurerm_eventhub.logging ]
    
