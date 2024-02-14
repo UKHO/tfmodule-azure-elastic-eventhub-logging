@@ -192,7 +192,7 @@ resource "null_resource" "create_package_policy" {
   "vars": {
     "eventhub": "${local.eventhub_name}",
     "consumer_group": "$Default",
-    "connection_string": "${var.event_hub_namespace_connection_string}",
+    "connection_string": "${local.eventhub_connection_string}",
     "storage_account": "${var.elk_storage_account}",
     "storage_account_key": "${var.elk_storage_account_key}"
   }
