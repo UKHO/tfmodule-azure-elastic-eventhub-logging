@@ -7,7 +7,6 @@ resource "null_resource" "create_package_policy" {
     var_name = var.name
     var_service = var.service
     var_env = var.env
-    var_event_hub_namespace_connection_string = var.event_hub_namespace_connection_string
     var_elk_storage_account = var.elk_storage_account
     var_elk_storage_account_key = var.elk_storage_account_key
   }
