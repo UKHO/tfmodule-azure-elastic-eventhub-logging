@@ -1,4 +1,4 @@
-# terraform-module-template
+# tfmodule-azure-elastic-eventhub-logging
 Use this module to create an eventhub with an associated Elastic Azure Log Intergration. 
 It 
 
