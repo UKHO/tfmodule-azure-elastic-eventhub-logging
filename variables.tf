@@ -28,11 +28,6 @@ variable "resource_group_name" {
   description = "Resource Group name"
 }
 
-variable "key_vault_id" {
-  type = string
-  description = "Key Vault ID"
-}
-
 variable "event_hub_namespace" {}
 
 #variable "event_hub_namespace_connection_string" {}
