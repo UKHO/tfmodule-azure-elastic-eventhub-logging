@@ -9,6 +9,7 @@ resource "null_resource" "create_package_policy" {
     var_env = var.env
     var_elk_storage_account = var.elk_storage_account
     var_elk_storage_account_key = var.elk_storage_account_key
+    var_elk_namespace = var.elk_namespace
   }
   depends_on = [ azurerm_eventhub.logging ]
    

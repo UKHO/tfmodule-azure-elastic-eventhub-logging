@@ -39,7 +39,7 @@ variable "event_hub_namespace" {}
 
 variable "configuration_store_id" {}
 
-variable agent_policy_id {}
+variable "agent_policy_id" {}
 
 variable "elk_api_key" {}
 
