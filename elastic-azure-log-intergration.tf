@@ -26,7 +26,7 @@ resource "null_resource" "create_package_policy" {
     "name": "azure",
     "version": "1.7.0"
   },
-  "name": "${var.name}-${var.service}-ENG-${var.env}",
+  "name": "${var.name}-${var.service}-${var.env}",
   "description": "",
   "namespace": "${var.elk_namespace}",
   "inputs": {
