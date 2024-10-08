@@ -30,8 +30,6 @@ variable "resource_group_name" {
 
 variable "event_hub_namespace" {}
 
-#variable "event_hub_namespace_connection_string" {}
-
 variable "configuration_store_id" {}
 
 variable "agent_policy_id" {}

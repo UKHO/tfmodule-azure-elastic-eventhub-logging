@@ -27,3 +27,17 @@ resource "azurerm_app_configuration_key" "eventhub_logging_ukho_level" {
   value                   = var.ukho_min_log_level
   lifecycle { ignore_changes = [ value, tags, configuration_store_id ] }
 }
+
+resource "azurerm_app_configuration_key" "serilog_logging_environment" {
+  configuration_store_id = var.configuration_store_id
+  key                    = "${var.service}:Serilog:Properties:_Environment"
+  value                   = upper(var.env)
+  lifecycle { ignore_changes = [ value, tags, configuration_store_id ] }
+}
+
+resource "azurerm_app_configuration_key" "serilog_logging_entitypath" {
+  configuration_store_id = var.configuration_store_id
+  key                    = "${var.service}:Logging:EventHub:EntityPath"
+  value                   = azurerm_eventhub.logging.name
+  lifecycle { ignore_changes = [ value, tags, configuration_store_id ] }
+}
