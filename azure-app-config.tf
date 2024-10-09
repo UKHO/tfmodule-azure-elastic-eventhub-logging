@@ -33,7 +33,7 @@ resource "azurerm_app_configuration_key" "eventhub_logging_ukho_level" {
 }
 
 resource "azurerm_app_configuration_key" "serilog_logging_environment" {
-  count           = (var.using_serilog == true) ? 1 : 0
+  count           = var.using_serilog ? 1 : 0
   configuration_store_id = var.configuration_store_id
   key                    = "${var.service}:Serilog:Properties:_Environment"
   value                   = upper(var.env)
@@ -41,7 +41,7 @@ resource "azurerm_app_configuration_key" "serilog_logging_environment" {
 }
 
 resource "azurerm_app_configuration_key" "serilog_logging_entitypath" {
-  count           = (var.using_serilog == true) ? 1 : 0
+  count           = var.using_serilog ? 1 : 0
   configuration_store_id = var.configuration_store_id
   key                    = "${var.service}:Logging:EventHub:EntityPath"
   value                   = azurerm_eventhub.logging.name
