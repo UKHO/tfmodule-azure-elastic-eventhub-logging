@@ -1,6 +1,7 @@
 
 
 resource "azurerm_app_configuration_key" "eventhub_logging_entitypath" {
+  count           = (var.using_serilog == false) ? 1 : 0
   configuration_store_id = var.configuration_store_id
   key                    = "${var.service}:EventHubLogging:EntityPath"
   value                   = azurerm_eventhub.logging.name
@@ -8,6 +9,7 @@ resource "azurerm_app_configuration_key" "eventhub_logging_entitypath" {
 }
 
 resource "azurerm_app_configuration_key" "eventhub_logging_environment" {
+  count           = (var.using_serilog == false) ? 1 : 0
   configuration_store_id = var.configuration_store_id
   key                    = "${var.service}:EventHubLogging:Environment"
   value                   = upper(var.env)
@@ -15,6 +17,7 @@ resource "azurerm_app_configuration_key" "eventhub_logging_environment" {
 }
 
 resource "azurerm_app_configuration_key" "eventhub_logging_level" {
+  count           = (var.using_serilog == false) ? 1 : 0
   configuration_store_id = var.configuration_store_id
   key                    = "${var.service}:EventHubLogging:MinimumLoggingLevel"
   value                   = var.svc_min_log_level
@@ -22,6 +25,7 @@ resource "azurerm_app_configuration_key" "eventhub_logging_level" {
 }
 
 resource "azurerm_app_configuration_key" "eventhub_logging_ukho_level" {
+  count           = (var.using_serilog == false) ? 1 : 0
   configuration_store_id = var.configuration_store_id
   key                    = "${var.service}:EventHubLogging:UkhoMinimumLoggingLevel"
   value                   = var.ukho_min_log_level
@@ -29,6 +33,7 @@ resource "azurerm_app_configuration_key" "eventhub_logging_ukho_level" {
 }
 
 resource "azurerm_app_configuration_key" "serilog_logging_environment" {
+  count           = (var.using_serilog == true) ? 1 : 0
   configuration_store_id = var.configuration_store_id
   key                    = "${var.service}:Serilog:Properties:_Environment"
   value                   = upper(var.env)
@@ -36,6 +41,7 @@ resource "azurerm_app_configuration_key" "serilog_logging_environment" {
 }
 
 resource "azurerm_app_configuration_key" "serilog_logging_entitypath" {
+  count           = (var.using_serilog == true) ? 1 : 0
   configuration_store_id = var.configuration_store_id
   key                    = "${var.service}:Logging:EventHub:EntityPath"
   value                   = azurerm_eventhub.logging.name

@@ -1,6 +1,9 @@
 # tfmodule-azure-elastic-eventhub-logging
 Use this module to create an eventhub with an associated Elastic Azure Log Integration. 
-It 
+
+*NOTE: Currently the Data View must be created manually...*
+
+After this has been run the Elastic policy and data stream will be created.  To create an Elastic Data View using the new data stream you must first push logs to the event hub.  Then the data stream will appear when setting the index pattern for the new Data View.
 
 ## Requirements
 - `Service` Pass in a service name for the service you want to log. To manage multiple services create multiple references to the module (see usage). 
@@ -33,7 +36,7 @@ module "logging" {
   elk_storage_account                   = var.elk_storage_account
   elk_storage_account_key               = var.elk_storage_account_key
   elk_namespace                         = var.elk_namespace # must be lower case 
-
+  using_serilog                         = false # Adds expected keys if set to true and using Serilog, if using UKHO EventHub-Logging-Provider package set it to false
 
   depends_on = []
   count      = var.enable_evhns ? 1 : 0
