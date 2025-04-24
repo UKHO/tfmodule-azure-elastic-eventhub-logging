@@ -1,3 +1,7 @@
+variable "elastic_version" {
+  default = "1.7.0"
+}
+
 variable "name" {
   type = string
   default = "test"
