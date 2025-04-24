@@ -39,6 +39,7 @@ resource "null_resource" "create_package_policy" {
             "parse_message": true,
             "preserve_original_event": false,
             "data_stream.dataset": "azure.eventhub",
+            "storage_account_container": "${var.elk_namespace}",
             "tags": [
               "azure-eventhub",
               "forwarded"
