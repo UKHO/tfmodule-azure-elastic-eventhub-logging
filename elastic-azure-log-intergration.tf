@@ -24,7 +24,7 @@ resource "null_resource" "create_package_policy" {
   "policy_id": "${var.agent_policy_id}",
   "package": {
     "name": "azure",
-    "version": "1.7.0"
+    "version": "${var.elastic_version}"
   },
   "name": "${var.name}-${var.service}-${var.env}",
   "description": "",
