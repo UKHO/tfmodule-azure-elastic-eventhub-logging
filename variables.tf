@@ -36,18 +36,6 @@ variable "event_hub_namespace" {}
 
 variable "configuration_store_id" {}
 
-variable "agent_policy_id" {}
-
-variable "elk_api_key" {}
-
-variable "elk_url" {}
-
-variable "elk_storage_account" {}
-
-variable "elk_storage_account_key" {}
-
-variable "elk_namespace" {} # must be lower case
-
 variable "svc_min_log_level" {}
 
 variable "ukho_min_log_level" {}
