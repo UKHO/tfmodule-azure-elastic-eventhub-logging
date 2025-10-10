@@ -25,19 +25,11 @@ module "logging" {
     azurerm.sub = azurerm.sub
   }
   product_alias                         = ""
-  name                                  = ""
   service                               = "" #Keep lower case 
   env                                   = var.environment
-  location                              = var.location
   resource_group_name                   = ""
   configuration_store_id                = azurerm_app_configuration.data_hub_appConfig.id
   event_hub_namespace                   = azurerm_eventhub_namespace.this.name
-  agent_policy_id                       = var.agent_policy_id
-  elk_api_key                           = var.elastic_api_key
-  elk_url                               = var.elk_url
-  elk_storage_account                   = var.elk_storage_account
-  elk_storage_account_key               = var.elk_storage_account_key
-  elk_namespace                         = var.elk_namespace # must be lower case 
   using_serilog                         = false # Adds expected keys if set to true and using Serilog, if using UKHO EventHub-Logging-Provider package set it to false
 
   depends_on = []
