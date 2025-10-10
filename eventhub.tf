@@ -1,6 +1,6 @@
 resource "azurerm_eventhub" "logging" {
   name                = "${var.product_alias}-${var.service}-${var.env}-evh"
-  namespace_name      = var.event_hub_namespace
+  namespace_id        = var.event_hub_namespace_id
   resource_group_name = var.resource_group_name
   partition_count     = 2
   message_retention   = 1
@@ -14,5 +14,5 @@ resource "azurerm_eventhub_authorization_rule" "root_manage" {
   listen              = true
   send                = true
   manage              = true
-  depends_on = [ azurerm_eventhub.logging ]
+  depends_on          = [ azurerm_eventhub.logging ]
 }
