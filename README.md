@@ -1,9 +1,11 @@
 # tfmodule-azure-elastic-eventhub-logging
-Use this module to create an eventhub with an associated Elastic Azure Log Integration. 
+Use this module to create an eventhub to use with logging your service
 
 *NOTE: Currently the Data View must be created manually...*
 
-After this has been run the Elastic policy and data stream will be created.  To create an Elastic Data View using the new data stream you must first push logs to the event hub.  Then the data stream will appear when setting the index pattern for the new Data View.
+This module on a previous version (1.0.6) used to create the integration via a CURL request but now that side of the automation is done bi-hourly by the observability team.
+
+To create an Elastic Data View using the new data stream you must first push logs to the event hub.  Then the data stream will appear when setting the index pattern for the new Data View.
 
 ## Requirements
 - `Service` Pass in a service name for the service you want to log. To manage multiple services create multiple references to the module (see usage). 
