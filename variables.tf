@@ -20,6 +20,10 @@ variable "resource_group_name" {
 
 variable "event_hub_namespace" {}
 
+variable "event_hub_namespace_id" {
+  description = "The resource ID of the Event Hub Namespace"
+}
+
 variable "configuration_store_id" {}
 
 variable "svc_min_log_level" {}
